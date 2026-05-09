@@ -8,6 +8,6 @@ test - test - public.png - выгрузка схемы из DBVeaver
 
 ### РЕШЕНИЕ ЗАДАНИЯ 1 (INSERT) = insertdatascript.sql  
 
-### РЕШЕНИЕ ЗАДАНИЯ 2,3 (SELECT) = selectdatascript.sql
+### РЕШЕНИЕ ЗАДАНИЯ 2,3,4 (SELECT) = selectdatascript.sql
 
 
