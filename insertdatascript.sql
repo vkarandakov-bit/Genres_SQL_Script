@@ -23,7 +23,8 @@ INSERT INTO Albums (AlbumTitle, ReleaseYear) VALUES
 ('Hello, Dolly!', 1964),
 ('The Eminem Show', 2002),
 ('Modern Jazz Collection', 2019),
-('New Era Hits', 2020);
+('New Era Hits', 2020),
+('Jazz & Rock Fusion', 2021);
 
 -- 5. Связь: Альбомы ↔ Исполнители
 INSERT INTO Album_Artists (AlbumID, ArtistID) VALUES
@@ -32,7 +33,8 @@ INSERT INTO Album_Artists (AlbumID, ArtistID) VALUES
 (3, 3),  -- Hello, Dolly! - Louis Armstrong
 (4, 4),  -- The Eminem Show - Eminem
 (5, 3),  -- Modern Jazz Collection -> Louis Armstrong
-(6, 4);  -- New Era Hits -> Eminem
+(6, 4),  -- New Era Hits -> Eminem
+(7, 1), (7, 3); -- The Beatles (Рок/Поп) + Louis Armstrong (Джаз)
 
 INSERT INTO Tracks (AlbumID, TrackTitle, Duration) VALUES
 (1, 'Come Together', 259),
@@ -46,7 +48,8 @@ INSERT INTO Tracks (AlbumID, TrackTitle, Duration) VALUES
 (5, 'Smooth Evening', 245),
 (5, 'City Lights', 310),
 (6, 'Top Line', 220),
-(6, 'Night Drive', 198);
+(6, 'Night Drive', 198),
+(7, 'Fusion Jam', 210);
 
 INSERT INTO Compilations (CompilationTitle, ReleaseYear) VALUES
 ('Лучшие хиты 60-х', 2020),
@@ -68,4 +71,5 @@ INSERT INTO Compilation_Tracks (CompilationID, TrackID) VALUES
 (1, 9),  -- Лучшие хиты 60-х - Smooth Evening
 (2, 11), -- Лучшее из поп-музыки - Top Line
 (3, 10), -- Джазовая классика - City Lights
-(4, 12); -- Ultimate Collection - Night Drive
+(4, 12), -- Ultimate Collection - Night Drive
+(4, 13); -- Ultimate Collection - Fusion Jam

@@ -74,3 +74,40 @@ JOIN Album_Artists aa ON a.ID = aa.AlbumID
 JOIN Artists ar ON aa.ArtistID = ar.ID
 WHERE ar.ArtistName = 'Louis Armstrong';
 
+-- ЗАДАНИЕ 4
+
+-- 1. Названия альбомов, в которых присутствуют исполнители более чем одного жанра
+SELECT a.AlbumTitle
+FROM Albums a
+JOIN Album_Artists aa ON a.ID = aa.AlbumID
+JOIN Artist_Genres ag ON aa.ArtistID = ag.ArtistID
+GROUP BY a.ID, a.AlbumTitle
+HAVING COUNT(DISTINCT ag.GenreID) > 1;
+
+-- 2. Наименования треков, которые не входят в сборники
+SELECT t.TrackTitle
+FROM Tracks t
+LEFT JOIN Compilation_Tracks ct ON t.ID = ct.TrackID
+WHERE ct.CompilationID IS NULL;
+
+-- 3. Исполнитель(и), записавший самый короткий трек
+SELECT DISTINCT ar.ArtistName
+FROM Artists ar
+JOIN Album_Artists aa ON ar.ID = aa.ArtistID
+JOIN Tracks t ON aa.AlbumID = t.AlbumID
+WHERE t.Duration = (SELECT MIN(Duration) FROM Tracks);
+
+-- 4. Названия альбомов, содержащих наименьшее количество треков
+SELECT a.AlbumTitle
+FROM Albums a
+LEFT JOIN Tracks t ON a.ID = t.AlbumID
+GROUP BY a.ID, a.AlbumTitle
+HAVING COUNT(t.ID) = (
+    SELECT MIN(track_cnt)
+    FROM (
+        SELECT COUNT(t2.ID) AS track_cnt
+        FROM Albums a2
+        LEFT JOIN Tracks t2 ON a2.ID = t2.AlbumID
+        GROUP BY a2.ID
+    ) AS counts
+);
