@@ -1,6 +1,6 @@
 Диаграмма Жанры-Исполнители испр.png, 
 
-GenreScript_restricts.sql -Исправлена схема(связи), добавлены ограничения по году выхода альбома и треки должны быть длительностью более 0.
+GenreScript_restricts.sql - CREATE - Исправлена схема(связи), добавлены ограничения по году выхода альбома и треки должны быть длительностью более 0.
 
 test - test - public.png - выгрузка схемы из DBVeaver
 
@@ -8,6 +8,6 @@ test - test - public.png - выгрузка схемы из DBVeaver
 
 ### РЕШЕНИЕ ЗАДАНИЯ 1 (INSERT) = insertdatascript.sql  
 
-### РЕШЕНИЕ ЗАДАНИЯ 2 (SELECT) = selectdatascript.sql
+### РЕШЕНИЕ ЗАДАНИЯ 2,3 (SELECT) = selectdatascript.sql
 
 
