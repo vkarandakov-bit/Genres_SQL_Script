@@ -1,3 +1,5 @@
+-- ЗАДАНИЕ 2
+
 -- 1. Название и продолжительность самого длительного трека
 SELECT TrackTitle, Duration
 FROM Tracks
@@ -24,3 +26,51 @@ SELECT TrackTitle
 FROM Tracks
 WHERE TrackTitle ILIKE '%мой%' 
    OR TrackTitle ILIKE '%my%';
+
+--ЗАДАНИЕ 3 
+
+---- 1. Количество исполнителей в каждом жанре
+SELECT 
+    g.GenreName, 
+    COUNT(ag.ArtistID) AS artists_count
+FROM Genres g
+LEFT JOIN Artist_Genres ag ON g.ID = ag.GenreID
+GROUP BY g.GenreName
+ORDER BY artists_count DESC;
+
+-- 2. Количество треков, вошедших в альбомы 2019–2020 годов
+SELECT 
+    COUNT(t.ID) AS tracks_count
+FROM Tracks t
+JOIN Albums a ON t.AlbumID = a.ID
+WHERE a.ReleaseYear BETWEEN 2019 AND 2020;
+
+-- 3. Средняя продолжительность треков по каждому альбому
+SELECT 
+    a.AlbumTitle, 
+    ROUND(AVG(t.Duration), 2) AS avg_duration_sec
+FROM Albums a
+JOIN Tracks t ON a.ID = t.AlbumID
+GROUP BY a.ID, a.AlbumTitle
+ORDER BY a.AlbumTitle;
+
+-- 4. Все исполнители, которые не выпустили альбомы в 2020 году
+SELECT ArtistName
+FROM Artists
+WHERE ID NOT IN (
+    SELECT aa.ArtistID
+    FROM Album_Artists aa
+    JOIN Albums a ON aa.AlbumID = a.ID
+    WHERE a.ReleaseYear = 2020
+);
+
+-- 5. Названия сборников, в которых присутствует конкретный исполнитель (Louis Armstrong)
+SELECT DISTINCT c.CompilationTitle
+FROM Compilations c
+JOIN Compilation_Tracks ct ON c.ID = ct.CompilationID
+JOIN Tracks t ON ct.TrackID = t.ID
+JOIN Albums a ON t.AlbumID = a.ID
+JOIN Album_Artists aa ON a.ID = aa.AlbumID
+JOIN Artists ar ON aa.ArtistID = ar.ID
+WHERE ar.ArtistName = 'Louis Armstrong';
+
