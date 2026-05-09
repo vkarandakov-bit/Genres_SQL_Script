@@ -21,13 +21,18 @@ INSERT INTO Albums (AlbumTitle, ReleaseYear) VALUES
 ('Abbey Road', 1969),
 ('Thriller', 1982),
 ('Hello, Dolly!', 1964),
-('The Eminem Show', 2002);
+('The Eminem Show', 2002),
+('Modern Jazz Collection', 2019),
+('New Era Hits', 2020);
 
+-- 5. Связь: Альбомы ↔ Исполнители
 INSERT INTO Album_Artists (AlbumID, ArtistID) VALUES
 (1, 1),  -- Abbey Road - The Beatles
 (2, 2),  -- Thriller - Michael Jackson
 (3, 3),  -- Hello, Dolly! - Louis Armstrong
-(4, 4);  -- The Eminem Show - Eminem
+(4, 4),  -- The Eminem Show - Eminem
+(5, 3),  -- Modern Jazz Collection -> Louis Armstrong
+(6, 4);  -- New Era Hits -> Eminem
 
 INSERT INTO Tracks (AlbumID, TrackTitle, Duration) VALUES
 (1, 'Come Together', 259),
@@ -37,7 +42,11 @@ INSERT INTO Tracks (AlbumID, TrackTitle, Duration) VALUES
 (3, 'Hello, Dolly!', 145),
 (3, 'It''s a Wonderful World', 198),
 (4, 'Without Me', 290),
-(4, 'Cleanin'' Out My Closet', 298);
+(4, 'Cleanin'' Out My Closet', 298),
+(5, 'Smooth Evening', 245),
+(5, 'City Lights', 310),
+(6, 'Top Line', 220),
+(6, 'Night Drive', 198);
 
 INSERT INTO Compilations (CompilationTitle, ReleaseYear) VALUES
 ('Лучшие хиты 60-х', 2020),
@@ -55,4 +64,8 @@ INSERT INTO Compilation_Tracks (CompilationID, TrackID) VALUES
 (3, 6),  -- Джазовая классика - It's a Wonderful World
 (4, 1),  -- Ultimate Collection - Come Together
 (4, 3),  -- Ultimate Collection - Billie Jean
-(4, 7);  -- Ultimate Collection - Without Me
+(4, 7),  -- Ultimate Collection - Without Me
+(1, 9),  -- Лучшие хиты 60-х - Smooth Evening
+(2, 11), -- Лучшее из поп-музыки - Top Line
+(3, 10), -- Джазовая классика - City Lights
+(4, 12); -- Ultimate Collection - Night Drive
