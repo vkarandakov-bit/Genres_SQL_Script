@@ -1,3 +1,14 @@
+TRUNCATE TABLE 
+    Artist_Genres, 
+    Album_Artists, 
+    Compilation_Tracks, 
+    Tracks, 
+    Genres, 
+    Artists, 
+    Albums, 
+    Compilations 
+RESTART IDENTITY CASCADE;
+
 INSERT INTO Genres (GenreName) VALUES
 ('Рок'),
 ('Поп'),
@@ -24,7 +35,9 @@ INSERT INTO Albums (AlbumTitle, ReleaseYear) VALUES
 ('The Eminem Show', 2002),
 ('Modern Jazz Collection', 2019),
 ('New Era Hits', 2020),
-('Jazz & Rock Fusion', 2021);
+('Jazz & Rock Fusion', 2021),
+('Не входят в выборку my',2020),
+('Входят в выборку my',2020);
 
 -- 5. Связь: Альбомы ↔ Исполнители
 INSERT INTO Album_Artists (AlbumID, ArtistID) VALUES
@@ -49,7 +62,19 @@ INSERT INTO Tracks (AlbumID, TrackTitle, Duration) VALUES
 (5, 'City Lights', 310),
 (6, 'Top Line', 220),
 (6, 'Night Drive', 198),
-(7, 'Fusion Jam', 210);
+(7, 'Fusion Jam', 210),
+(8, 'my own',275),
+(8, 'my',220),
+(8, 'own my',118),
+(8, 'oh my god',218),
+(9, 'myself', 322),
+(9, 'by myself',222),
+(9, 'bemy self', 250),
+(9, 'myself by', 240),
+(9, 'by myself by',280),
+(9, 'beemy', 230),
+(9, 'premyne',290);
+
 
 INSERT INTO Compilations (CompilationTitle, ReleaseYear) VALUES
 ('Лучшие хиты 60-х', 2020),

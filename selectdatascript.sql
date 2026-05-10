@@ -22,10 +22,16 @@ FROM Artists
 WHERE ArtistName NOT LIKE '% %';
 
 -- 5. Название треков, которые содержат слово «мой» или «my»
+--SELECT TrackTitle
+--FROM Tracks
+--WHERE TrackTitle ILIKE '%мой%' 
+--   OR TrackTitle ILIKE '%my%';
+
+--ДОРАБОТКА 5. Ищем именно слово, не часть строки
+
 SELECT TrackTitle
 FROM Tracks
-WHERE TrackTitle ILIKE '%мой%' 
-   OR TrackTitle ILIKE '%my%';
+WHERE TrackTitle ~* '\y(my|мой)\y';
 
 --ЗАДАНИЕ 3 
 
@@ -77,12 +83,21 @@ WHERE ar.ArtistName = 'Louis Armstrong';
 -- ЗАДАНИЕ 4
 
 -- 1. Названия альбомов, в которых присутствуют исполнители более чем одного жанра
-SELECT a.AlbumTitle
+--SELECT a.AlbumTitle
+--FROM Albums a
+--JOIN Album_Artists aa ON a.ID = aa.AlbumID
+--JOIN Artist_Genres ag ON aa.ArtistID = ag.ArtistID
+--GROUP BY a.ID, a.AlbumTitle
+--HAVING COUNT(DISTINCT ag.GenreID) > 1;
+
+--ДОРАБОТКА
+SELECT DISTINCT a.AlbumTitle
 FROM Albums a
 JOIN Album_Artists aa ON a.ID = aa.AlbumID
 JOIN Artist_Genres ag ON aa.ArtistID = ag.ArtistID
-GROUP BY a.ID, a.AlbumTitle
+GROUP BY a.ID, a.AlbumTitle, aa.ArtistID
 HAVING COUNT(DISTINCT ag.GenreID) > 1;
+
 
 -- 2. Наименования треков, которые не входят в сборники
 SELECT t.TrackTitle
